@@ -6,28 +6,9 @@
 	import { Input } from './ui/input';
 	import { ArrowRight, User } from 'lucide-svelte';
 	import * as DropdownMenu from './ui/dropdown-menu';
-	import { page } from '$app/stores';
-	import { afterNavigate, goto } from '$app/navigation';
-
-	afterNavigate(() => {
-		address = $page.url.searchParams.get('address') ?? '';
-	});
-
-	let address = $page.url.searchParams.get('address') ?? '';
-	let open = !!address ?? false;
 </script>
 
-<Dialog.Root
-	{open}
-	onOpenChange={async (open) => {
-		if (!open) {
-			await goto('/', {
-				keepFocus: true,
-				noScroll: true
-			});
-		}
-	}}
->
+<Dialog.Root>
 	<Dialog.Trigger class={cn(buttonVariants(), 'flex-1')}>Send</Dialog.Trigger>
 	<Dialog.Content>
 		<Dialog.Header>
@@ -76,7 +57,7 @@
 
 					<div class="flex flex-col gap-1">
 						<Label for="address" class="pb-1">Address</Label>
-						<Input bind:value={address} id="address" name="address" placeholder="Wallet address" />
+						<Input id="address" name="address" placeholder="Wallet address" />
 					</div>
 
 					<div class="flex items-center justify-start">

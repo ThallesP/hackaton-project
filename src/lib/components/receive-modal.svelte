@@ -6,7 +6,6 @@
 	import { Label } from './ui/label';
 	import { Check, Copy } from 'lucide-svelte';
 	import { scale } from 'svelte/transition';
-	import { PUBLIC_BASE_URL } from '$env/static/public';
 
 	let copied = false;
 	let copiedTimeout: ReturnType<typeof setTimeout>;
@@ -26,14 +25,10 @@
 		await copyToClipboard(text);
 	}
 
-	QRCode.toDataURL(
-		`${PUBLIC_BASE_URL}?address=${address}`,
-		{ errorCorrectionLevel: 'L' },
-		(err, url) => {
-			if (err) qrCode = undefined;
-			qrCode = url;
-		}
-	);
+	QRCode.toDataURL(address, { errorCorrectionLevel: 'L' }, (err, url) => {
+		if (err) qrCode = undefined;
+		qrCode = url;
+	});
 </script>
 
 <Dialog.Root>
