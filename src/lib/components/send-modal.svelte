@@ -1,35 +1,35 @@
 <script lang="ts">
 	import * as Dialog from '$lib/components/ui/dialog';
+	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { cn } from '@/utils';
 	import { Button, buttonVariants } from './ui/button';
 	import { Label } from './ui/label';
 	import { Input } from './ui/input';
-	import { ArrowRight, User } from 'lucide-svelte';
-	import * as DropdownMenu from './ui/dropdown-menu';
+	import { ArrowRight } from 'lucide-svelte';
+
+	let open = false;
+
+	function openModal() {
+		open = true;
+	}
 </script>
 
 <Dialog.Root>
 	<Dialog.Trigger class={cn(buttonVariants(), 'flex-1')}>Send</Dialog.Trigger>
 	<Dialog.Content>
 		<Dialog.Header>
-			<Dialog.Title>Send ... to ...</Dialog.Title>
+			<Dialog.Title>Send</Dialog.Title>
 			<Dialog.Description>
-				This action cannot be undone. This will permanently delete your account and remove your data
-				from our servers.
+				Verify that the address below is correct before sending.
 			</Dialog.Description>
 
 			<div class="flex flex-col gap-4 pt-8">
 				<div class="flex flex-col gap-4">
-					<!-- <div class="flex flex-col gap-1">
-						<Label for="amount" class="pb-1">Amount</Label>
-						<Input
-							id="amount"
-							name="amount"
-							type="number"
-							inputmode="numeric"
-							placeholder="Amount to send"
-						/>
-					</div> -->
+					<div class="flex flex-col gap-1">
+						<Label for="address" class="pb-1">Address</Label>
+						<Input id="address" name="address" placeholder="Wallet address" />
+					</div>
+
 					<div class="flex flex-col gap-1">
 						<div class="flex items-center justify-between">
 							<Label for="asset" class="pb-1">Amount</Label>
@@ -44,20 +44,20 @@
 								placeholder="Amount to send"
 							/>
 
-							<DropdownMenu.Root>
-								<DropdownMenu.Trigger class={cn(buttonVariants(), 'absolute right-0 top-0 gap-1')}>
-									<User size={16} /> XYZ
-								</DropdownMenu.Trigger>
-								<DropdownMenu.Content class="max-h-[45vh] min-w-[40px] overflow-y-auto">
-									H
-								</DropdownMenu.Content>
-							</DropdownMenu.Root>
+							<Tooltip.Root bind:open>
+								<Tooltip.Trigger asChild let:builder>
+									<Button
+										on:click={openModal}
+										builders={[builder]}
+										class="absolute right-0 top-0 gap-1"
+									>
+										<img src="/xrp-icon.png" alt="XRP asset icon" width={16} height={16} />
+										XRP
+									</Button>
+								</Tooltip.Trigger>
+								<Tooltip.Content class="w-32">Coming Soon...</Tooltip.Content>
+							</Tooltip.Root>
 						</div>
-					</div>
-
-					<div class="flex flex-col gap-1">
-						<Label for="address" class="pb-1">Address</Label>
-						<Input id="address" name="address" placeholder="Wallet address" />
 					</div>
 
 					<div class="flex items-center justify-start">
