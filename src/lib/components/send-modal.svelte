@@ -1,10 +1,17 @@
 <script lang="ts">
 	import * as Dialog from '$lib/components/ui/dialog';
+	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { cn } from '@/utils';
 	import { Button, buttonVariants } from './ui/button';
 	import { Label } from './ui/label';
 	import { Input } from './ui/input';
 	import { ArrowRight } from 'lucide-svelte';
+
+	let open = false;
+
+	function openModal() {
+		open = true;
+	}
 </script>
 
 <Dialog.Root>
@@ -36,10 +43,20 @@
 								inputmode="numeric"
 								placeholder="Amount to send"
 							/>
-							<Button class="absolute right-0 top-0 gap-1">
-								<img src="/xrp-icon.png" alt="XRP asset icon" width={16} height={16} />
-								XRP
-							</Button>
+
+							<Tooltip.Root bind:open>
+								<Tooltip.Trigger asChild let:builder>
+									<Button
+										on:click={openModal}
+										builders={[builder]}
+										class="absolute right-0 top-0 gap-1"
+									>
+										<img src="/xrp-icon.png" alt="XRP asset icon" width={16} height={16} />
+										XRP
+									</Button>
+								</Tooltip.Trigger>
+								<Tooltip.Content class="w-32">Coming Soon...</Tooltip.Content>
+							</Tooltip.Root>
 						</div>
 					</div>
 
