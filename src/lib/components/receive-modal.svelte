@@ -37,11 +37,8 @@
 	</Dialog.Trigger>
 	<Dialog.Content>
 		<Dialog.Header>
-			<Dialog.Title>Receive ...</Dialog.Title>
-			<Dialog.Description>
-				This action cannot be undone. This will permanently delete your account and remove your data
-				from our servers.
-			</Dialog.Description>
+			<Dialog.Title>Receive</Dialog.Title>
+			<Dialog.Description>Share your address with someone to receive funds.</Dialog.Description>
 
 			{#if qrCode}
 				<div class="flex items-center justify-center py-4">
@@ -55,7 +52,7 @@
 				{#if qrCode}
 					<h3 class="inline-flex items-center justify-center">
 						<span aria-hidden="true" class="h-0.5 flex-1 rounded-full bg-slate-700" />
-						<span class="px-4">Or</span>
+						<span class="px-4 uppercase">or</span>
 						<span aria-hidden="true" class="h-0.5 flex-1 rounded-full bg-slate-700" />
 					</h3>
 				{/if}
