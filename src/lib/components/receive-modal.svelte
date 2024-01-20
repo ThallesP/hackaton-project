@@ -9,7 +9,7 @@
 
 	let copied = false;
 	let copiedTimeout: ReturnType<typeof setTimeout>;
-	let address = '123946123907461239074209461049';
+	export let address: string;
 	let qrCode: string | undefined = undefined;
 
 	function alternateCopyIcon() {

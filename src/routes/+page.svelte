@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { goto } from '$app/navigation';
 	import Divider from '@/components/divider.svelte';
 	import ListItem from '@/components/list-item.svelte';
@@ -9,9 +9,6 @@
 	import * as Tabs from '@/components/ui/tabs';
 	import { web3auth } from '@/userStore';
 
-	const assets = [1, 2];
-	const transactions = [3, 4];
-
 	async function handleLogOut() {
 		try {
 			await $web3auth?.logout();
@@ -21,6 +18,8 @@
 			console.error(error);
 		}
 	}
+
+	export let data;
 </script>
 
 <nav class="flex h-24 w-full items-center">
@@ -32,13 +31,13 @@
 <main class="flex h-[calc(100lvh-96px)] flex-col items-center justify-center gap-2">
 	<div class="container flex w-[582px] max-w-full flex-col gap-2">
 		<h1 class="text-left text-3xl">
-			<span class="block text-base text-slate-400">Balance: </span>R$500,00
+			<span class="block text-base text-slate-400">Balance: </span>{data.balance}
 		</h1>
 
 		<div class="flex items-center justify-center gap-4 px-4 py-8">
-			<SendModal />
+			<SendModal privKey={data.privKey ?? '0x'} />
 
-			<ReceiveModal />
+			<ReceiveModal address={data.address ?? `0x`} />
 		</div>
 
 		<Tabs.Root>
@@ -48,11 +47,16 @@
 			</Tabs.List>
 			<Tabs.Content value="assets" class="rounded-md bg-slate-800 p-2">
 				<ListWrapper>
-					{#each assets as asset, i}
-						{@const isLast = i === assets.length - 1}
+					{#each data.assets as asset, i}
+						{@const isLast = i === data.assets.length - 1}
 						<div>
 							<ListItem>
-								{asset}
+								<div class="flex w-full justify-between">
+									<div>
+										{asset.name}
+									</div>
+									<div>{asset.balance}</div>
+								</div>
 							</ListItem>
 
 							{#if !isLast}
@@ -64,11 +68,17 @@
 			</Tabs.Content>
 			<Tabs.Content value="transactions" class="rounded-md bg-slate-800 p-2">
 				<ListWrapper>
-					{#each transactions as transaction, i}
-						{@const isLast = i === transactions.length - 1}
+					{#each data.transactions as transaction, i}
+						{@const isLast = i === data.transactions.length - 1}
 						<div>
 							<ListItem>
-								{transaction}
+								<div class="flex w-full justify-between">
+									<div class="flex flex-col">
+										<span>{transaction.tokenName}</span>
+										<span> {new Date(Number(transaction.timeStamp) * 1000)}</span>
+									</div>
+									<div>{transaction.value}</div>
+								</div>
 							</ListItem>
 
 							{#if !isLast}

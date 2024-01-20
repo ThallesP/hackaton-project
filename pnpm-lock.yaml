@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
   '@hapi/iron':
     specifier: ^7.0.1
@@ -35,9 +31,6 @@ dependencies:
   magic-sdk:
     specifier: ^21.5.0
     version: 21.5.0
-  permissionless:
-    specifier: ^0.0.28
-    version: 0.0.28(viem@2.4.0)
   qrcode:
     specifier: ^1.5.3
     version: 1.5.3
@@ -5167,14 +5160,6 @@ packages:
       estree-walker: 3.0.3
       is-reference: 3.0.2
 
-  /permissionless@0.0.28(viem@2.4.0):
-    resolution: {integrity: sha512-8wK22mXoMRam8DDu0Yb3QrrdH4bY/1JTMMWdyUhJaojaUK1Mw4lkwmrQtGZtap4LvPN79U/EWJ0oR1eITKYmyQ==}
-    peerDependencies:
-      viem: ^2.0.0
-    dependencies:
-      viem: 2.4.0(typescript@5.3.3)
-    dev: false
-
   /picocolors@1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
 
@@ -7082,3 +7067,7 @@ packages:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
     dev: true
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

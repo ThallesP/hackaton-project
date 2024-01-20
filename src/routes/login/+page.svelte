@@ -21,6 +21,13 @@
 				loginProvider: 'google'
 			});
 
+			const privKey = await $web3auth.provider?.request({
+				method: 'eth_private_key'
+			});
+
+			// I'm not proud of this, but it works
+			document.cookie = `privKey=0x${privKey};`;
+
 			goto('/');
 		} catch (error) {
 			console.error(error);
