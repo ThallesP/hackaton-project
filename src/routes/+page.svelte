@@ -1,16 +1,35 @@
 <script>
+	import { goto } from '$app/navigation';
 	import Divider from '@/components/divider.svelte';
 	import ListItem from '@/components/list-item.svelte';
 	import ListWrapper from '@/components/list-wrapper.svelte';
 	import ReceiveModal from '@/components/receive-modal.svelte';
 	import SendModal from '@/components/send-modal.svelte';
+	import Button from '@/components/ui/button/button.svelte';
 	import * as Tabs from '@/components/ui/tabs';
+	import { web3auth } from '@/userStore';
 
 	const assets = [1, 2];
 	const transactions = [3, 4];
+
+	async function handleLogOut() {
+		try {
+			await $web3auth?.logout();
+
+			goto('/login');
+		} catch (error) {
+			console.error(error);
+		}
+	}
 </script>
 
-<main class="flex h-[100lvh] flex-col items-center justify-center gap-2">
+<nav class="flex h-24 w-full items-center">
+	<div class="container flex w-[582px] max-w-full justify-end">
+		<Button on:click={handleLogOut}>Log out</Button>
+	</div>
+</nav>
+
+<main class="flex h-[calc(100lvh-96px)] flex-col items-center justify-center gap-2">
 	<div class="container flex w-[582px] max-w-full flex-col gap-2">
 		<h1 class="text-left text-3xl">
 			<span class="block text-base text-slate-400">Balance: </span>R$500,00
