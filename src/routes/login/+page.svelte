@@ -3,12 +3,15 @@
 	import { Button } from '@/components/ui/button';
 	import Google from '@/icons/google.svelte';
 	import { web3auth } from '@/userStore';
+	import { onMount } from 'svelte';
 	// import 'dotenv/config';
 	// import { Web3Auth } from '@web3auth/modal';
 
-	if ($web3auth?.connected) {
-		goto('/');
-	}
+	onMount(() => {
+		if ($web3auth?.connected) {
+			goto('/');
+		}
+	});
 
 	async function login() {
 		if (!$web3auth) {

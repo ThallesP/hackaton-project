@@ -10,11 +10,13 @@
 	onMount(async () => {
 		const pkg = await import('@web3auth/modal');
 		const { Web3Auth } = pkg;
+		const pkg2 = await import('@web3auth/base');
+		const { CHAIN_NAMESPACES } = pkg2;
 
 		$web3auth = new Web3Auth({
 			clientId, // Get your Client ID from Web3Auth Dashboard
 			chainConfig: {
-				chainNamespace: 'eip155',
+				chainNamespace: CHAIN_NAMESPACES.EIP155,
 				chainId: '0x15F902', // Please use 0x1 for Mainnet
 				rpcTarget: 'https://rpc-evm-sidechain.xrpl.org/',
 				displayName: 'XRP Testnet'
