@@ -75,7 +75,7 @@
 								<div class="flex w-full justify-between">
 									<div class="flex flex-col">
 										<span>{transaction.tokenName}</span>
-										<span> {new Date(Number(transaction.timeStamp) * 1000)}</span>
+										<span> {new Date(Number(transaction.timeStamp) * 1000).toLocaleString()}</span>
 									</div>
 									<div>{transaction.value}</div>
 								</div>
