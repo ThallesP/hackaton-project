@@ -28,7 +28,7 @@
 	</div>
 </nav>
 
-<main class="flex h-[calc(100lvh-96px)] flex-col items-center justify-center gap-2">
+<main class="flex min-h-[calc(100lvh-96px)] flex-col items-center justify-center gap-2 pb-8">
 	<div class="container flex w-[582px] max-w-full flex-col gap-2">
 		<h1 class="text-left text-3xl">
 			<span class="block text-base text-slate-400">Balance: </span>{data.balance}
@@ -77,7 +77,18 @@
 										<span>{transaction.tokenName}</span>
 										<span> {new Date(Number(transaction.timeStamp) * 1000).toLocaleString()}</span>
 									</div>
-									<div>{transaction.value}</div>
+									<div class="flex flex-col">
+										<span class="text-end">
+											{transaction.value}
+										</span>
+
+										<span
+											>{#if transaction.from === data.address?.toLowerCase()}
+												Sent
+											{:else}
+												Received{/if}
+										</span>
+									</div>
 								</div>
 							</ListItem>
 

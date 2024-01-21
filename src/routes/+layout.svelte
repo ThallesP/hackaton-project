@@ -4,7 +4,6 @@
 	import { web3auth } from '@/userStore';
 	import { goto } from '$app/navigation';
 	import { PUBLIC_WEB3AUTH_PROJECT_ID } from '$env/static/public';
-	import { OPENLOGIN_NETWORK } from '@web3auth/base';
 
 	const clientId = PUBLIC_WEB3AUTH_PROJECT_ID;
 
@@ -12,7 +11,7 @@
 		const pkg = await import('@web3auth/modal');
 		const { Web3Auth } = pkg;
 		const pkg2 = await import('@web3auth/base');
-		const { CHAIN_NAMESPACES } = pkg2;
+		const { CHAIN_NAMESPACES, OPENLOGIN_NETWORK } = pkg2;
 
 		$web3auth = new Web3Auth({
 			clientId, // Get your Client ID from Web3Auth Dashboard
