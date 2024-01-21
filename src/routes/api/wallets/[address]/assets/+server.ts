@@ -36,10 +36,5 @@ export async function GET({ params }) {
 
 	return new Response(JSON.stringify(assets), {
 		status: 200,
-		headers: {
-			// stale-while-revalidate
-			"Cache-Control":
-				"public, max-age=60, s-maxage=60, stale-while-revalidate=60",
-		},
 	});
 }
